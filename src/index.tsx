@@ -10,11 +10,9 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
     </Provider>
-  </React.StrictMode>
 );

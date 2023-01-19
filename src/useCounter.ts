@@ -9,13 +9,15 @@ export const useCounter = () => {
     const queryMutation = useMyQuery();
     const counter = useRef(0);
 
+    console.log("useCounter (done)", done);
+
     useEffect(() => {
-        console.log("hook effeect started");
+        console.log("hook effeect started (done)", done);
 
         if(!done) {
             console.log("disaptch setCounter");
             counter.current++;
-            dispatch(setCounter(counter.current));
+            dispatch(setCounter(counter.current)); // this thing runs recursive render
 
             console.log("going to set done");
             setDone((cur) => {

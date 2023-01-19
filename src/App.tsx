@@ -7,7 +7,7 @@ import { useCounter } from './useCounter';
 export const App = () => {
   useCounter();
   const counter = useAppSelector(getCounter);
-  console.log("App render");
+  console.log("App render (counter)", counter);
   return (
     <div>{counter} renders</div>
   );
