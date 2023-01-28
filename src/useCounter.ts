@@ -12,10 +12,13 @@ export const useCounter = () => {
     console.log("useCounter (done)", done);
 
     useEffect(() => {
-        console.log("hook effeect started (done)", done);
+        console.log("hook effect started (done)", done);
+        if (counter.current > 20) { // prevent max depth reach 
+            return;
+        }
 
         if(!done) {
-            console.log("disaptch setCounter");
+            console.log("dispatch setCounter");
             counter.current++;
             dispatch(setCounter(counter.current)); // this thing runs recursive render
 
@@ -25,5 +28,5 @@ export const useCounter = () => {
                 return true;
             })
         }
-    }, [dispatch, done, queryMutation])
+    }, [dispatch, done, queryMutation]) // queryMutation changes on every render
 }
