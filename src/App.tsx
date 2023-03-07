@@ -1,14 +1,25 @@
-import React from 'react';
-
-import { getCounter } from './store/counter/slice';
-import { useAppSelector } from './store/hooks';
-import { useCounter } from './useCounter';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 export const App = () => {
-  useCounter();
-  const counter = useAppSelector(getCounter);
-  console.log("App render (counter)", counter);
-  return (
-    <div>{counter} renders</div>
-  );
+	const [done, setDone] = useState(false);
+	const [counter, setCounter] = useState(0);
+
+	useLayoutEffect(() => {
+		if (counter < 20) {
+			setCounter(counter + 1);	
+		}
+	}) // intentionally run on every render
+
+	useEffect(() => {
+		setDone(true);
+	}) // intentionally run on every render
+
+	console.log("render done", done);
+	console.log("render counter", counter);
+	console.log("render\n");
+
+	return (
+		<div>{counter} renders</div>
+	);
 }
